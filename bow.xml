@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_blank">
+</head>
+<body>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bowman 2</title>
+
+  <meta name="viewport"
+        content="initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/gh/AndreajnRcm4/b398dl2h74v@9a23fbb2373d743a564873251cbb57736ebc1f73/style.css">
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      background: black;
+      overflow: hidden;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Ruffle Flash Emulator -->
+  <script src="https://cdn.jsdelivr.net/gh/somer-sheff-73/xv@main/ruffle.js"></script>
+
+  <!-- Game -->
+  <object width="100%" height="100%">
+    <param name="movie"
+           value="https://cdn.jsdelivr.net/gh/filesmabex/z3x4@main/bowman_2.swf">
+    <embed src="https://cdn.jsdelivr.net/gh/filesmabex/z3x4@main/bowman_2.swf"
+           width="100%"
+           height="100%">
+  </object>
+
+</body>
+</html>
+
+</body>
+</html>
