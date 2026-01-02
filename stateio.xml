@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Fullscreen Game</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<style>
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+iframe {
+  width: 100vw;
+  height: 100vh;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<iframe 
+  src="https://html5.gamedistribution.com/rvvASMiM/1701b2232f8c4f7689394f229bda07d7/index.html?gd_sdk_referrer_url=https%3A%2F%2Fwww.mathnook.com%2Ffun-games-2%2Fstate-io.html&amp;gd_zone_config=eyJwYXJlbnRVUkwiOiJodHRwczovL2h0bWw1LmdhbWVkaXN0cmlidXRpb24uY29tLzE3MDFiMjIzMmY4YzRmNzY4OTM5NGYyMjliZGEwN2Q3Lz9nZF9zZGtfcmVmZXJyZXJfdXJsPWh0dHBzOi8vd3d3Lm1hdGhub29rLmNvbS9mdW4tZ2FtZXMtMi9zdGF0ZS1pby5odG1sIiwicGFyZW50RG9tYWluIjoibWF0aG5vb2suY29tIiwidG9wRG9tYWluIjoibWF0aG5vb2suY29tIiwiaGFzSW1wcmVzc2lvbiI6ZmFsc2UsImxvYWRlckVuYWJsZWQiOnRydWUsImhvc3QiOiJodG1sNS5nYW1lZGlzdHJpYnV0aW9uLmNvbSIsInZlcnNpb24iOiIxLjUuMTgifQ%253D%253D"
+  allow="fullscreen; gamepad *">
+</iframe>
+
+</body>
+</html>
