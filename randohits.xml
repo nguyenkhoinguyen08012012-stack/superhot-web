@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html>
+<head>
+<base target="_blank">
+</head>
+<body>
+    <html><head><base href="https://cdn.jsdelivr.net/gh/PeteZah-Games/PeteZahGames@main/public/storage/ag/g/ragdoll-hit/">
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Ragdoll Hit - Poki</title>
+	<script src="https://s0.2mdn.net/instream/video/client.js" async="" type="text/javascript"></script><script>
+	window.config = {
+		loader: 'unity-2020',
+		debug: false,
+		maxRatio: 24 / 9,
+		minRatio: 9 / 24,
+
+		title: 'Ragdoll Hit',
+		thumbnail: '3c892779be9dabb3589586c83ad3eeed.png',
+		numScreenshots:  3 ,
+
+		unityVersion: '2022.3.36f1',
+		unityWebglBuildUrl: '',
+
+		fileSize:  10 ,
+		cachedDecompressedFileSizes: {
+			'1aedb70085073113e2b55ca86f37e2e8.wasm.unityweb':  4070663 ,
+			'3338c1fab0254118d94e7278963be9f4.data.unityweb':  6129214 ,
+			'ae7e3b4bdec4176bd62c24dfc2799d25.framework.js.unityweb':  62830 ,
+			'd9d605cb1c18b4ed9fb179406f02ceab.loader.js':  114169 ,
+		},
+		"metadata": {"poki_template_version":1,"background_color":"#4D4D4D","code_filename":"1aedb70085073113e2b55ca86f37e2e8.wasm.unityweb","company_name":"Ericetto","data_filename":"3338c1fab0254118d94e7278963be9f4.data.unityweb","decompression_fallback":"Brotli","development_player":"false","framework_filename":"ae7e3b4bdec4176bd62c24dfc2799d25.framework.js.unityweb","height":"600","loader_filename":"d9d605cb1c18b4ed9fb179406f02ceab.loader.js","product_name":"Ragdoll Hit","product_version":"0.1","splash_screen_style":"Dark","unity_version":"2022.3.36f1","use_data_caching":"true","use_threads":"false","use_wasm":"true","use_webgl_1_0":"true","use_webgl_2_0":"true","width":"960"}
+	};
+	</script>
+<!-- will be copied to the resulting head //-->
+<script src="https://game-cdn.poki.com/scripts/baeb385ae52d1fe15574a1f68cfa8d3a444a190a/poki-sdk-core-baeb385ae52d1fe15574a1f68cfa8d3a444a190a.js" type="text/javascript" crossorigin="anonymous"></script><script src="https://game-cdn.poki.com/scripts/baeb385ae52d1fe15574a1f68cfa8d3a444a190a/poki-sdk-core-baeb385ae52d1fe15574a1f68cfa8d3a444a190a.js" type="text/javascript" crossorigin="anonymous"></script><style type="text/css">* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #002B50;
+    font-family: Torus, Arial, Helvetica, sans-serif;
+    color: #fff;
+}
+
+#game-container {
+    position: absolute !important;
+    left: 50%;
+    top: 50%;
+    display: none;
+}
+
+#game,
+#game canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#loader {
+    width: 100%;
+    height: 100%;
+}
+
+/**
+   * Slideshow
+   */
+
+#slideshow {
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    display: flex;
+    user-select: none;
+}
+
+@font-face {
+    font-family: Torus;
+    src:
+        url('//a.poki-cdn.com/fonts/torus-bold-webfont.woff2') format('woff2'),
+        url('//a.poki-cdn.com/fonts/torus-bold-webfont.woff') format('woff');
+    font-style: bold;
+    font-weight: 700;
+}
+
+/**
+   * Slideshow - Top section
+   */
+#progress-spinner{
+    margin-left: 0;
+    margin-top: 0;
+    left: 0px;
+    display:none;
+    transform: translate(100%, -50%);
+    width:10vh;
+}
+#progress-spinner >div{
+    width:2vh;
+    height:2vh;
+}
+#thumbnail {
+    box-shadow: 0 1vh 2vh rgba(0, 0, 0, 0.4);
+    /* box-shadow: 0 6px 12px rgba(0, 0, 0, 0.24); */
+    border-radius: 16.667%;
+}
+
+#slideshow-top {
+    display: flex;
+    margin: 2.5vh 0;
+}
+
+#slideshow-top-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+#game-title, #progress-comment {
+    display: flex;
+    flex-grow: 1;
+    align-items: center;
+    font-size:2vh;
+}
+
+#progress-container {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    transition: 0.2s ease-out all;
+}
+
+#progress-container.done {
+    opacity: 0;
+}
+
+#progress-bar {
+    background: #fff;
+    width: 100%;
+    overflow: hidden;
+}
+
+#progress-fill {
+    background: #3CF7DC;
+    height: 100%;
+    transition: 0.2s ease-out all;
+    animation-name: fillColor;
+    animation-duration: 3.5s;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+}
+
+@keyframes fillColor {
+    0% {
+        background-color: #3CF7DC;
+    }
+
+    25% {
+        background-color: #FFA9BE;
+    }
+
+    50% {
+        background-color: #FFDC00;
+    }
+
+    75% {
+        background-color: #E0AEF5;
+    }
+
+    100% {
+        background-color: #3CF7DC;
+    }
+}
+
+@media (orientation: portrait) {
+    #thumbnail {
+        margin-right: 2.4vh;
+    }
+
+    #game-title h1 {
+        font-size: 2vh;
+    }
+
+    #slideshow-top {
+        width: 70vw;
+    }
+
+    #progress-bar {
+        height: 1vh;
+        border-radius: 0.5vh;
+    }
+
+    #progress-fill {
+        border-radius: 0.5vh;
+    }
+
+    #thumbnail {
+        width: 5vh;
+        height: 5vh;
+    }
+
+    #progress-amount {
+        font-size: 2vh;
+        margin-left: 1.5vh;
+        width: 3vh;
+    }
+}
+
+@media (orientation: landscape) {
+    #thumbnail {
+        margin-right: 3vh;
+    }
+
+    #game-title h1 {
+        font-size: 3vh;
+    }
+
+    #slideshow-top {
+        width: 50vw;
+    }
+
+    #progress-bar {
+        height: 1.2vh;
+        border-radius: 0.6vh;
+    }
+
+    #progress-fill {
+        border-radius: 0.6vh;
+    }
+
+    #thumbnail {
+        width: 7.5vh;
+        height: 7.5vh;
+    }
+
+    #progress-amount {
+        font-size: 2.5vh;
+        margin-left: 1.875vh;
+        width: 3.75vh;
+    }
+}
+
+/**
+   * Slideshow - Images section
+   */
+
+#slideshow-images {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+}
+
+#slideshow-images .image {
+    position: absolute;
+    box-shadow: 0 2.4vh 3.6vh rgba(0, 0, 0, 0.4);
+    transition-property: transform;
+    transition-timing-function: ease-in-out;
+    perspective: 1000px;
+    left: 0;
+    overflow: hidden;
+    /* border: 1vh solid; */
+}
+
+#slideshow-images .image img {
+    width: 100%;
+    height: 100%;
+}
+
+#slideshow-images .image:nth-of-type(1n) {
+    border-color: #3BE8B0;
+}
+
+#slideshow-images .image:nth-of-type(2n) {
+    border-color: #FF6D92;
+}
+
+#slideshow-images .image:nth-of-type(3n) {
+    border-color: #A177FF;
+}
+
+#slideshow-images .image:nth-of-type(4n) {
+    border-color: #FFD200;
+}
+
+#slideshow-images .left {
+    z-index: 2;
+}
+#slideshow-images .right {
+    z-index: 1;
+}
+
+#slideshow-images .middle {
+    z-index: 3;
+}
+
+#slideshow-images .left img,
+#slideshow-images .right img {
+    transform: scale(1.05);
+}
+
+#slideshow-images .left img,
+#slideshow-images .right img,
+#slideshow-images .fromLeft img,
+#slideshow-images .fromRight img {
+    filter: blur(1vh);
+}
+
+#slideshow-images .inactive {
+    display: none;
+}
+
+#slideshow-images .inactive.fromLeft,
+#slideshow-images .inactive.fromRight {
+    display: block;
+}
+
+/**
+   * Slideshow - Navigation section
+   */
+
+#slideshow-nav {
+    display: flex;
+    justify-content: center;
+    margin: 2.5vh 0;
+}
+
+#slideshow-nav .bullet {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#slideshow-nav .bullet:after {
+    content: '';
+    background: #fff;
+    border-radius: 0.4vh;
+    width: 0.8vh;
+    height: 0.8vh;
+}
+
+#slideshow-nav .bullet.active:after {
+    background: #009CFF;
+}
+
+#slideshow-nav .bullet {
+    width: 2.5vh;
+    height: 2.5vh;
+}
+
+#slideshow-nav .bullet:after {
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+}
+
+/**
+   * Pop-in animation
+   */
+
+#slideshow-nav,
+#slideshow-images {
+    opacity: 0;
+    transition: 0.4s all ease-out;
+    transform: translateY(2vh);
+    perspective: 1000px;
+    transition-delay: 400ms;
+}
+
+#slideshow-nav {
+    transition-delay: 600ms;
+}
+
+#slideshow.active #slideshow-images,
+#slideshow.active #slideshow-nav {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@keyframes bounceInDown {
+
+    from,
+    60%,
+    75%,
+    90%,
+    to {
+        animation-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+    }
+
+    0% {
+        transform: translate3d(0, -100vh, 0);
+    }
+
+    40% {
+        transform: translate3d(0, 0.5vh, 0);
+    }
+
+    65% {
+        transform: translate3d(0, -0.2vh, 0);
+    }
+
+    80% {
+        transform: translate3d(0, 0.1vh, 0);
+    }
+
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+
+#slideshow-top {
+    transform: translate3d(0, -20vh, 0);
+    opacity: 0;
+}
+
+#slideshow-top.active {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+    animation-name: bounceInDown;
+    animation-duration: 0.5s;
+}
+
+/**
+   * Loading dots
+   */
+.spinner {
+    position: relative;
+    left: -9999px;
+    animation: dot-pulse 1.5s infinite linear;
+    animation-delay: .25s;
+    transform:translate(50vw, 50vh) translate(-130%, -130%);
+  }
+
+  .spinner:before, .spinner:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+  .spinner, .spinner:before, .spinner:after{
+    width: 10px;
+    height: 10px;
+    border-radius: 5px;
+  }
+
+  .spinner:before {
+    animation: dot-pulse 1.5s infinite linear;
+    animation-delay: 0s;
+    left:-20px;
+  }
+
+  .spinner:after {
+    animation: dot-pulse 1.5s infinite linear;
+    animation-delay: .5s;
+    left:20px;
+  }
+
+  @keyframes dot-pulse {
+    0% {
+      box-shadow: 9999px 0 0 -5px #FFF;
+    }
+    30% {
+      box-shadow: 9999px 0 0 2px #FFF;
+    }
+    60%,
+    100% {
+      box-shadow: 9999px 0 0 -5px #FFF;
+    }
+  }
+</style><style>
+	
+	canvas{
+		touch-action: none;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+</style><style>
+	
+	canvas{
+		touch-action: none;
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+</style><style>
+.pokiSdkContainer {
+	overflow: hidden;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 1000;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.pokiSdkContainer.pokiSdkFixed {
+	position: fixed;
+}
+
+.pokiSdkContainer.pokiSdkVisible {
+	display: block;
+}
+
+.pokiSdkContainer.pokiSdkHidden,
+.pokiSdkSpinnerContainer.pokiSdkHidden {
+	display: none;
+}
+
+.pokiSdkContainer.pokiSdkHidden,
+.pokiSdkSpinnerContainer {
+	pointer-events: none;
+}
+
+.pokiSdkSpinnerContainer {
+	z-index: 10;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: url('https://a.poki-cdn.com/images/thumb_anim_2x.gif') 50% 50% no-repeat;
+	user-select: none;
+}
+
+.pokiSdkInsideContainer {
+	background: #000;
+	position: relative;
+	z-index: 1;
+	width: 100%;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	opacity: 0;
+	-webkit-transition: opacity 0.5s ease-in-out;
+	-moz-transition: opacity 0.5s ease-in-out;
+	-ms-transition: opacity 0.5s ease-in-out;
+	-o-transition: opacity 0.5s ease-in-out;
+	transition: opacity 0.5s ease-in-out;
+}
+
+.pokiSdkContainer.pokiSdkVisible .pokiSdkInsideContainer {
+	opacity: 1;
+}
+
+.pokiSDKAdContainer, .pokiSdkVideoContainer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.pokiSdkStartAdButton {
+	position: absolute;
+	z-index: 9999;
+	top: 0;
+
+	padding-top: 10%;
+	width: 100%;
+	height: 100%;
+	text-align: center;
+	color: #FFF;
+
+	font: 700 15pt 'Arial', sans-serif;
+	font-weight: bold;
+	letter-spacing: 1px;
+	transition: 0.1s ease-in-out;
+	line-height: 1em;
+}
+
+.pokiSdkPauseButtonContainer {
+	cursor:pointer;
+	width: 100%;
+	height: 100%;
+	z-index: 10;
+}
+
+.pokiSdkPauseButtonBG {
+    content: '';
+    background: rgba(0, 43, 80, 0.5);
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+	z-index: 11;
+}
+
+.pokiSdkPauseButtonContainer:hover .pokiSdkPauseButtonBG {
+	background: rgba(0, 43, 80, 0.7);
+}
+
+.pokiSdkPauseButton {
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 12;
+}
+
+.pokiSdkPauseButton:before {
+	content: '';
+	position: absolute;
+	width: 100px;
+	height: 100px;
+	display: block;
+	border: 2px solid #fff;
+	border-radius: 50%;
+	user-select: none;
+	background-color: rgba(0, 0, 0, 0.6);
+	transition: background-color 0.5s ease;
+	animation: 1s linear infinite pokiPulse;
+	z-index: 12;
+}
+
+.pokiSdkPauseButton:after {
+	content: '';
+	position: absolute;
+	display: block;
+	box-sizing: border-box;
+	border-color: transparent transparent transparent #fff;
+	border-style: solid;
+	border-width: 26px 0 26px 40px;
+	pointer-events: none;
+	animation: 1s linear infinite pokiPulse;
+	left: 6px;
+	z-index: 12;
+}
+
+@keyframes pokiPulse {
+	0% {
+		transform: translate(-50%, -50%) scale(0.95);
+	}
+	70% {
+		transform: translate(-50%, -50%) scale(1.1);
+	}
+	100% {
+		transform: translate(-50%, -50%) scale(0.95);
+	}
+}
+
+.pokiSdkProgressContainer {
+	background: #B8C7DD;
+	width: 100%;
+	height: 5px;
+	position: absolute;
+	bottom: 0;
+	z-index: 9999;
+}
+
+.pokiSdkProgressBar {
+	position:relative;
+	bottom:0px;
+	background: #FFDC00;
+	height: 100%;
+	width: 0%;
+	transition: width 0.5s;
+	transition-timing-function: linear;
+}
+
+.pokiSdkProgressBar.pokiSdkVisible, .pokiSdkPauseButtonContainer.pokiSdkVisible, .pokiSdkStartAdButton.pokiSdkVisible {
+	display: block;
+	pointer-events: auto;
+}
+
+.pokiSdkProgressBar.pokiSdkHidden, .pokiSdkPauseButtonContainer.pokiSdkHidden, .pokiSdkStartAdButton.pokiSdkHidden, .pokiSDKNrAdsContainer.pokiSdkHidden {
+	display: none;
+	pointer-events: none;
+}
+
+.pokiSDKAdContainer .pokiSDKHouseAdContainer {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 99999;
+	cursor: pointer;
+}
+
+.pokiSDKNrAdsContainer {
+	bottom: 10px;
+	position: absolute;
+	left: 10px;
+	z-index: 9999;
+	color: #FFF;
+	font: 700 9pt 'Arial', sans-serif;
+	filter: drop-shadow(0 0 0.2rem black);
+}
+
+</style><script type="text/javascript" async="" src="https://securepubads.g.doubleclick.net/tag/js/gpt.js"></script><script type="text/javascript" async="" src="https://imasdk.googleapis.com/js/sdkloader/ima3.js"></script><script type="text/javascript" async="" src="https://a.poki-cdn.com/prebid/prebid8.52.2-ay.js"></script><script type="text/javascript" async="" src="https://c.amazon-adsystem.com/aax2/apstag.js"></script><meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="Amm8/NmvvQfhwCib6I7ZsmUxiSCfOxWxHayJwyU1r3gRIItzr7bNQid6O8ZYaE1GSQTa69WwhPC9flq/oYkRBwsAAACCeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="><meta http-equiv="origin-trial" content="A9nrunKdU5m96PSN1XsSGr3qOP0lvPFUB2AiAylCDlN5DTl17uDFkpQuHj1AFtgWLxpLaiBZuhrtb2WOu7ofHwEAAACKeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A93bovR+QVXNx2/38qDbmeYYf1wdte9EO37K9eMq3r+541qo0byhYU899BhPB7Cv9QqD7wIbR1B6OAc9kEfYCA4AAACQeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A1S5fojrAunSDrFbD8OfGmFHdRFZymSM/1ss3G+NEttCLfHkXvlcF6LGLH8Mo5PakLO1sCASXU1/gQf6XGuTBgwAAACQeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQUlQcm9tcHRBUElNdWx0aW1vZGFsSW5wdXQiLCJleHBpcnkiOjE3NzQzMTA0MDAsImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><script src="https://securepubads.g.doubleclick.net/pagead/managed/js/gpt/m202601050101/pubads_impl.js" async=""></script><link href="https://securepubads.g.doubleclick.net/pagead/managed/dict/m202601080101/gpt" rel="compression-dictionary"><script src="https://config.aps.amazon-adsystem.com/configs/e32f1423-28bc-43ed-8ab0-5ae6b4449cf8" type="text/javascript" async="async"></script><meta http-equiv="origin-trial" content="A9AxgGSwmnfgzzkyJHILUr3H8nJ/3D+57oAsL4DBt4USlng4jZ0weq+fZtHC/Qwwn6gd4QSa5DzT3OBif+kXVA0AAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiUHJpdmFjeVNhbmRib3hBZHNBUElzIiwiZXhwaXJ5IjoxNjk1MTY3OTk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AlK2UR5SkAlj8jjdEc9p3F3xuFYlF6LYjAML3EOqw1g26eCwWPjdmecULvBH5MVPoqKYrOfPhYVL71xAXI1IBQoAAAB8eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiV2ViVmlld1hSZXF1ZXN0ZWRXaXRoRGVwcmVjYXRpb24iLCJleHBpcnkiOjE3NTgwNjcxOTksImlzU3ViZG9tYWluIjp0cnVlfQ=="></head>
+<body>
+	<script src="https://cdn.jsdelivr.net/gh/PeteZah-Games/PeteZahGames@main/public/storage/ag/g/ragdoll-hit/master-loader.js"></script><script src="https://cdn.jsdelivr.net/gh/Collasperz/ragdoll-hit/poki-sdk.js"></script>
+<!-- will be copied to the resulting body //-->
+<!-- will also be copied to the resulting body //-->
+
+
+<script src="https://cdn.jsdelivr.net/gh/Collasperz/ragdoll-hit/poki-sdk.js"></script><script src="https://cdn.jsdelivr.net/gh/Collasperz/ragdoll-hit/poki-sdk.jsunity-2020.js"></script><script src="https://cdn.jsdelivr.net/gh/PeteZah-Games/PeteZahGames@main/public/storage/ag/g/ragdoll-hit/unity-2020.js"></script><div id="spinner" class="spinner"></div><div id="loader" style="display: none;"><div id="slideshow"><div id="slideshow-top" class="active"><img id="thumbnail" alt="Ragdoll Hit" title="Ragdoll Hit" src="3c892779be9dabb3589586c83ad3eeed.png"><div id="slideshow-top-container"><div id="game-title">Ragdoll Hit</div><div id="progress-spinner" class="spinner" style="display: flex;"><div class="bounce0"></div><div class="bounce1"></div><div class="bounce2"></div></div><div id="progress-container" class="done"><div id="progress-bar"><div id="progress-fill" style="width: 100%;"></div></div><div id="progress-amount" style="width: 12vh; white-space: nowrap;">100% of 10MB</div></div><div id="progress-comment">Preparing game...</div></div></div><div id="slideshow-images"></div><div id="slideshow-nav"></div></div></div><div id="game-container" style="width: 617px; height: 1039px; margin-left: -308.498px; margin-top: -519.497px; display: block;"><canvas id="game" width="1111" height="1870" style="cursor: default;"></canvas></div><div class="pokiSdkContainer pokiSdkHidden pokiSdkFixed"><div class="pokiSdkInsideContainer"><div class="pokiSdkProgressContainer pokiSdkHidden"><div class="pokiSdkProgressBar" style="width: 0%;"></div></div><video id="pokiSDKVideoContainer" class="pokiSdkVideoContainer" playsinline="playsinline" muted="muted"></video><div id="pokiSDKAdContainer" class="pokiSDKAdContainer"><div style="position: absolute;"><div style="display: none;"><video title="Advertisement" webkit-playsinline="true" playsinline="true" style="background-color: rgb(0, 0, 0); height: 100%; width: 100%; position: absolute; left: 0px; top: 0px;"></video><div style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px;"></div></div><div style="display: none;"><video title="Advertisement" webkit-playsinline="true" playsinline="true" style="background-color: rgb(0, 0, 0); height: 100%; width: 100%; position: absolute; left: 0px; top: 0px;"></video><div style="position: absolute; width: 100%; height: 100%; left: 0px; top: 0px;"></div></div><iframe src="https://imasdk.googleapis.com/js/core/bridge3.736.0_en.html#deid=%22%22&amp;eventfe_experiment_ids=%5B%5D&amp;fid=%22goog_585396127%22&amp;genotype_experiment_data=%7B%22experimentStateProto%22%3A%22%5B%5B%5B45713128%2Cnull%2Cnull%2C%5B%5D%5D%2C%5Bnull%2C749060184%2Cnull%2C%5Bnull%2C100%5D%5D%2C%5B45722344%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45706017%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B45740207%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45668885%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45685340%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45734716%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45735891%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45663239%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45715032%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B45661356%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45676441%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45675307%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B45675308%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5Bnull%2C45645574%2Cnull%2C%5B%5D%5D%2C%5B45688859%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45656766%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45710689%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45710688%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B45685601%2Cnull%2Cnull%2C%5B%5D%5D%2C%5Bnull%2C45685602%2Cnull%2C%5Bnull%2C500%5D%5D%2C%5B45747172%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B775241416%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B781107959%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B781107958%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B792614055%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B781107957%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45729602%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45658982%2Cnull%2Cnull%2C%5B%5D%5D%2C%5B45725657%2Cnull%2Cnull%2C%5B%5D%5D%5D%2C%5B%5B16%2C%5B%5B1%2C%5B%5B31089630%5D%2C%5B31089631%2C%5B%5B45668885%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%2C%5B1000%2C%5B%5B95332046%5D%5D%5D%2C%5Bnull%2C%5B%5B95332047%5D%5D%5D%2C%5B10%2C%5B%5B95333808%5D%2C%5B95333809%2C%5B%5B635466687%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%2C%5B10%2C%5B%5B95338769%2C%5B%5Bnull%2C45645574%2Cnull%2C%5Bnull%2C1%5D%5D%5D%5D%2C%5B95338770%2C%5B%5Bnull%2C45645574%2Cnull%2C%5Bnull%2C2%5D%5D%5D%5D%5D%5D%2C%5B10%2C%5B%5B95345206%5D%2C%5B95345207%2C%5B%5B45661356%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%2C%5Bnull%2C%5B%5B95351425%5D%2C%5B95351426%2C%5B%5B45676441%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%2C%5B10%2C%5B%5B95356068%5D%2C%5B95356069%2C%5B%5B45685601%2Cnull%2Cnull%2C%5B%5D%5D%2C%5Bnull%2C45685602%2Cnull%2C%5B%5D%5D%5D%5D%2C%5B95356070%2C%5B%5B45685601%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5Bnull%2C45685602%2Cnull%2C%5B%5D%5D%5D%5D%2C%5B95356071%2C%5B%5B45685601%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5Bnull%2C45685602%2Cnull%2C%5Bnull%2C100%5D%5D%5D%5D%5D%5D%2C%5B1%2C%5B%5B95373378%2C%5B%5B792614055%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%2C%5B95373379%2C%5B%5B45747172%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B781107959%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B792614055%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B781107957%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%2C%5B50%2C%5B%5B95375505%5D%2C%5B95375506%2C%5B%5Bnull%2C749060184%2Cnull%2C%5B%5D%5D%5D%5D%5D%5D%2C%5Bnull%2C%5B%5B95375930%5D%2C%5B95375931%2C%5B%5B45734716%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%2C%5B95376520%2C%5B%5B45734716%2Cnull%2Cnull%2C%5B1%5D%5D%2C%5B45735891%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%2C%5Bnull%2C%5B%5B95378095%5D%2C%5B95378096%2C%5B%5B45740207%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%2C%5B1%2C%5B%5B95378629%5D%2C%5B95378630%2C%5B%5B45729602%2Cnull%2Cnull%2C%5B1%5D%5D%5D%5D%5D%5D%5D%5D%5D%2Cnull%2Cnull%2C%5Bnull%2C1000%2C1%2C1000%5D%5D%22%7D&amp;imalib_experiments=%5B95322027%2C95331589%2C95332046%2C95375505%5D&amp;is_eap_loader=false&amp;managed_js_experiment_id=0&amp;page_correlator=3828044611383765&amp;pvsid=6559555737308242&amp;top_accessible_page_url=%22https%3A%2F%2Fifartedonschoolblocks-16975443.codehs.me%2FGames.html%22" allowfullscreen="" allow="autoplay;attribution-reporting" id="goog_585396127" title="Advertisement" style="border: 0px; opacity: 0; margin: 0px; padding: 0px; position: relative; color-scheme: light;"></iframe><iframe title="Advertisement" style="visibility: hidden; width: 0px; height: 0px; position: absolute; left: 0px; top: 0px;"></iframe></div></div></div><div class="pokiSdkSpinnerContainer"></div><div class="pokiSDKNrAdsContainer pokiSdkHidden"></div><div class="pokiSdkPauseButtonContainer pokiSdkHidden"><div class="pokiSdkPauseButton"></div><div class="pokiSdkPauseButtonBG"></div></div><div class="pokiSdkStartAdButton pokiSdkHidden">Tap anywhere to play ad</div></div><script src="https://cdn.jsdelivr.net/gh/Collasperz/ragdoll-hit/Build/d9d605cb1c18b4ed9fb179406f02ceab.loader.js"></script><script src="blob:https://ifartedonschoolblocks-16975443.codehs.me/3b972bb7-a0f7-4ab3-8455-c7f70a0479c9"></script></body></html>
+</body>
+</html>
